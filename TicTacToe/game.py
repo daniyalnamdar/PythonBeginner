@@ -1,5 +1,6 @@
 import time
 from player import HumanPlayer, RandomComputerPlayer
+import math
 
 class TicTacToe:
     def __init__(self):
@@ -45,14 +46,14 @@ class TicTacToe:
     def winner(self, square, letter):
         #winner if in a row anywhere we have to check all of the possibilities
         # first rows
-        row_ind = square // 3
+        row_ind = math.floor(square / 3)
         row = self.board[row_ind*3 : (row_ind + 1) * 3]
         if all([spot == letter for spot in row]):
             return True
         
         #check the column
         col_ind = square % 3
-        column = [self.board[col_ind*3] for i in range(3)]
+        column = [self.board[col_ind+i*3] for i in range(3)]
         if all([spot == letter for spot in column]):
             return True
         
